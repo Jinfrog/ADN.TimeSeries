@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADN.TimeSeries", "ADN.TimeSeries\ADN.TimeSeries.csproj", "{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADN.TimeSeries", "src\ADN.TimeSeries\ADN.TimeSeries.csproj", "{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3ECF2FD-447E-44F1-99AF-23B9611EEFB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5C228970-3B4E-46AF-B75E-BB5515EF2128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADN.TimeSeries.Tests", "tests\ADN.TimeSeries.Tests\ADN.TimeSeries.Tests.csproj", "{83246071-4369-4BB1-A15B-50AE48DE500B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83246071-4369-4BB1-A15B-50AE48DE500B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83246071-4369-4BB1-A15B-50AE48DE500B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83246071-4369-4BB1-A15B-50AE48DE500B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83246071-4369-4BB1-A15B-50AE48DE500B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2} = {A3ECF2FD-447E-44F1-99AF-23B9611EEFB9}
+		{83246071-4369-4BB1-A15B-50AE48DE500B} = {5C228970-3B4E-46AF-B75E-BB5515EF2128}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5BB6FF03-912E-45B6-B938-9AB4F2FDC005}
