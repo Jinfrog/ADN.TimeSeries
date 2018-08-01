@@ -1,0 +1,9 @@
+language: csharp
+solution: ADN.TimeSeries.sln
+mono: none
+dotnet: 2.0.0
+script:
+  - dotnet restore
+  - dotnet build ./src/ADN.TimeSeries/
+  - dotnet build ./tests/ADN.TimeSeries.Tests/
+  - dotnet test ./tests/ADN.TimeSeries.Tests/
