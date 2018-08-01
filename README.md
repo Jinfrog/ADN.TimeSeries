@@ -2,6 +2,8 @@
 
 ADN.TimeSeries is a cross-platform open-source library which provides time series utilities to .NET developers.
 
+[![Build Status](https://travis-ci.org/andresdigiovanni/ADN.TimeSeries.svg?branch=master)](https://travis-ci.org/andresdigiovanni/ADN.TimeSeries)
+
 ## Installation
 
 ADN.TimeSeries runs on Windows, Linux, and macOS.
