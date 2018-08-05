@@ -7,13 +7,15 @@ using System.Text;
 namespace ADN.TimeSeries
 {
     /// <summary>
-    /// DTW Barycenter Averaging
+    /// A static class that implements DTW Barycenter Averaging.
     /// </summary>
-    public class DBA
+    public static class DBA
     {
         /// <summary>
         /// Generate average of supplied series.
         /// </summary>
+        /// <param name="series">Supplied series.</param>
+        /// <param name="maxIterations">Maximum number of iterations to calculate the average.</param>
         public static double[] Average(List<double[]> series, int maxIterations = 100)
         {
             // Check arguments

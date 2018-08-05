@@ -5,7 +5,7 @@ using System.Text;
 namespace ADN.TimeSeries
 {
     /// <summary>
-    /// Dynamic Time Wrapping
+    /// Class to calculate the Dynamic Time Wrapping.
     /// </summary>
     public class DTW
     {
@@ -15,6 +15,12 @@ namespace ADN.TimeSeries
         private double[,] _f;
         private double _sum;
 
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
+        /// <param name="x">The first <see cref="Array"/> that contains data to calculate the DTW.</param>
+        /// <param name="y">The second <see cref="Array"/> that contains data to calculate the DTW.</param>
+        /// <param name="sakoeChibaBand">Size of limits to warping path of first <see cref="Array"/> to be inside the second <see cref="Array"/>.</param>
         public DTW(double[] x, double[] y, int sakoeChibaBand = -1)
         {
             // Check arguments
@@ -79,11 +85,19 @@ namespace ADN.TimeSeries
             _sum = ComputeFBackward(x.Length, y.Length);
         }
 
+        /// <summary>
+        /// Get the value of the calculated DTW.
+        /// </summary>
+        /// <returns>Value of the calculated DTW.</returns>
         public double GetSum()
         {
             return _sum;
         }
 
+        /// <summary>
+        /// Get the path of the calculated DTW.
+        /// </summary>
+        /// <returns>Path of the calculated DTW.</returns>
         public Tuple<int, int>[] GetPath()
         {
             List<Tuple<int, int>> tupleBackward = ComputePathBackward(_x.Length, _y.Length);
