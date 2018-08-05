@@ -36,10 +36,10 @@ namespace ADN.TimeSeries
 
             //initialize to series closest to median min/max after detrending
             List<double[]> tempSeries = series.Select(Detrend).ToList();
-            List<int> maxIndexes = tempSeries.Select(x => x.IndexOfMax()).ToList();
-            List<int> minIndexes = tempSeries.Select(x => x.IndexOfMin()).ToList();
-            int medianMaxIndex = maxIndexes.Median();
-            int medianMinIndex = minIndexes.Median();
+            List<double> maxIndexes = tempSeries.Select(x => (double)x.IndexOfMax()).ToList();
+            List<double> minIndexes = tempSeries.Select(x => (double)x.IndexOfMin()).ToList();
+            double medianMaxIndex = maxIndexes.Median();
+            double medianMinIndex = minIndexes.Median();
             double[] average = new double[length];
             for (int i = 0; i < length; i++)
             {
