@@ -8,32 +8,69 @@ namespace ADN.TimeSeries.Tests
 {
     public class SmoothedZScoreTest
     {
+        [Fact]
+        public void SetThreshold_Exception()
+        {
+            var smoothedZScore = new SmoothedZScore();
+
+            Assert.Throws<ArgumentException>(() => smoothedZScore.SetThreshold(-1));
+        }
+
+        [Fact]
+        public void SetInfluence_Exception_Bottom()
+        {
+            var smoothedZScore = new SmoothedZScore();
+
+            Assert.Throws<ArgumentException>(() => smoothedZScore.SetInfluence(-1));
+        }
+
+        [Fact]
+        public void SetInfluence_Exception_Top()
+        {
+            var smoothedZScore = new SmoothedZScore();
+
+            Assert.Throws<ArgumentException>(() => smoothedZScore.SetInfluence(2));
+        }
+
+        [Fact]
+        public void SetLag_Exception()
+        {
+            var smoothedZScore = new SmoothedZScore();
+
+            Assert.Throws<ArgumentException>(() => smoothedZScore.SetLag(0));
+        }
+
         [Theory]
         [ClassData(typeof(AddData))]
-        public void Add(double[] value, double threshold, double influence, int lag, double[] expected)
+        public void Add(double[] value, double threshold, double influence, int lag, int expectedRisingFlank, int expectedFallingFlank)
         {
             var smoothedZScore = new SmoothedZScore();
             smoothedZScore.SetThreshold(threshold);
             smoothedZScore.SetInfluence(influence);
             smoothedZScore.SetLag(lag);
 
-            var result = new List<double>();
+            int resultRisingFlank = 0;
+            int resultFallingFlank = 0;
+            double detectedValue = 0;
 
             for (int i = 0; i < value.Length; i++)
             {
-                result.Add(smoothedZScore.Add(value[i]));
+                detectedValue = smoothedZScore.Add(value[i]);
+
+                if (detectedValue == 1) resultRisingFlank++;
+                else if (detectedValue == -1) resultFallingFlank++;
             }
 
-            Assert.Equal(expected, result.ToArray());
+            Assert.True(expectedRisingFlank == resultRisingFlank &&
+                        expectedFallingFlank == resultFallingFlank);
         }
 
         public class AddData : IEnumerable<object[]>
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, -5, -5, -5, -5, -5, -5 },
-                                            2, 5, 5,
-                                            new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0 }};
+                yield return new object[] { new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 },
+                                            2, 0.5, 5, 1, 1};
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

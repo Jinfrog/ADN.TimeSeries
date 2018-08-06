@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ADN.TimeSeries
 {
+    /// <summary>
+    /// Class that implements thresholding algorithm.
+    /// </summary>
     public class SmoothedZScore
     {
         private List<double> _filteredY = new List<double>();
@@ -15,22 +18,56 @@ namespace ADN.TimeSeries
         private double _influence = 0;
         private int _lag = 10;
 
-
+        /// <summary>
+        /// Set the threshold. The z-score at which the algorithm signals.
+        /// </summary>
+        /// <param name="threshold">Value to signal if a datapoint is out of standard deviations away from the moving mean.</param>
         public void SetThreshold(double threshold)
         {
+            // Check arguments
+            if (threshold < 0)
+            {
+                throw (new ArgumentException("threshold must be positive"));
+            }
+
             _threshold = threshold;
         }
 
+        /// <summary>
+        /// Set the influence.
+        /// </summary>
+        /// <param name="influence">The influence (between 0 and 1) of new signals on the mean and standard deviation.</param>
         public void SetInfluence(double influence)
         {
+            // Check arguments
+            if (influence < 0 || influence > 1)
+            {
+                throw (new ArgumentException("influence must to be between 0 and 1"));
+            }
+
             _influence = influence;
         }
 
+        /// <summary>
+        /// Set the lag.
+        /// </summary>
+        /// <param name="lag">The lag of the moving window.</param>
         public void SetLag(int lag)
         {
+            // Check arguments
+            if (lag <= 0)
+            {
+                throw (new ArgumentException("lag must be strictly positive"));
+            }
+
             _lag = lag;
         }
 
+        /// <summary>
+        /// Add a new point.
+        /// </summary>
+        /// <param name="value">New point.</param>
+        /// <returns>Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.</returns>
         public int Add(double value)
         {
             int signal = 0;
