@@ -18,6 +18,10 @@ Install-Package ADN.TimeSeries
 
 Or alternatively you can add the ADN.TimeSeries package from within Visual Studio's NuGet package manager.
 
+## Examples
+
+Please find examples and the documentation at the [wiki](https://github.com/andresdigiovanni/ADN.TimeSeries/wiki) of this repository.
+
 ## Contributing
 
 We welcome contributions! Please review our [contribution guide](CONTRIBUTING.md).
