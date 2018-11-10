@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>http://github.com/andresdigiovanni/ADN.TimeSeries/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>http://github.com/andresdigiovanni/ADN.TimeSeries</PackageProjectUrl>
-    <PackageTags>Series; Dynamic Time Wrapping; DTW Barycenter Averaging; DTW; DBA; SmoothedZScore</PackageTags>
+    <PackageTags>Series; Dynamic-Time-Wrapping; DTW-Barycenter-Averaging; DTW; DBA; Euclidean; SmoothedZScore</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl> 
     <RepositoryUrl>http://github.com/andresdigiovanni/ADN.TimeSeries</RepositoryUrl> 
     <PackageIconUrl>http://raw.githubusercontent.com/andresdigiovanni/ADN.TimeSeries/master/icon.png</PackageIconUrl>
