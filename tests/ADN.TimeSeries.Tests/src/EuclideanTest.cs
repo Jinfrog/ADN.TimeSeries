@@ -18,6 +18,38 @@ namespace ADN.TimeSeries.Tests
             Assert.Equal(expected, result);
         }
 
+        [Fact]
+        public void EuclideanDistance_Exception_x_Empty()
+        {
+            double[] x = new double[] { };
+            double[] y = new double[] { 0, 1, 2, 3, 4, 5 };
+            Assert.Throws<ArgumentNullException>(() => Euclidean.Distance(x, y));
+        }
+
+        [Fact]
+        public void EuclideanDistance_Exception_x_Null()
+        {
+            double[] x = null;
+            double[] y = new double[] { 0, 1, 2, 3, 4, 5 };
+            Assert.Throws<ArgumentNullException>(() => Euclidean.Distance(x, y));
+        }
+
+        [Fact]
+        public void EuclideanDistance_Exception_y_Empty()
+        {
+            double[] x = new double[] { 0, 1, 2, 3, 4, 5 };
+            double[] y = new double[] { };
+            Assert.Throws<ArgumentNullException>(() => Euclidean.Distance(x, y));
+        }
+
+        [Fact]
+        public void EuclideanDistance_Exception_y_Null()
+        {
+            double[] x = new double[] { 0, 1, 2, 3, 4, 5 };
+            double[] y = null;
+            Assert.Throws<ArgumentNullException>(() => Euclidean.Distance(x, y));
+        }
+
         public class EuclideanDistanceData : IEnumerable<object[]>
         {
             public IEnumerator<object[]> GetEnumerator()

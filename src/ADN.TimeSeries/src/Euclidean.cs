@@ -17,6 +17,17 @@ namespace ADN.TimeSeries
         /// <returns>Value of the calculated Euclidean distance.</returns>
         static public double Distance(double[] serie1, double[] serie2)
         {
+            // Check arguments
+            if (ReferenceEquals(serie1, null) || serie1.Length <= 0)
+            {
+                throw (new ArgumentNullException("serie1"));
+            }
+
+            if (ReferenceEquals(serie2, null) || serie2.Length <= 0)
+            {
+                throw (new ArgumentNullException("serie2"));
+            }
+
             double totalDist = 0;
             for (int i = 0; i < Math.Min(serie1.Length, serie2.Length); i++)
             {
