@@ -92,11 +92,7 @@ namespace ADN.TimeSeries
                 totalDist = 0;
                 for (int i = 0; i < series.Count; i++)
                 {
-                    for (int j = 0; j < series[i].Length; j++)
-                    {
-                        if (average1.Length <= j) break;
-                        totalDist += Math.Pow(series[i][j] - average1[j], 2);
-                    }
+                    totalDist += Euclidean.Distance(series[i], average1);
                 }
                 count++;
             }
