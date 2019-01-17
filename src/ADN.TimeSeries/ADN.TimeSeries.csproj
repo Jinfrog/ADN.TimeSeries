@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ADN.Helpers" Version="1.0.0" />
+    <PackageReference Include="ADN.Helpers" Version="1.4.0" />
   </ItemGroup>
 
 </Project>

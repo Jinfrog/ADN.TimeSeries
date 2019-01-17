@@ -11,9 +11,9 @@ namespace ADN.TimeSeries
     {
         private double[] _x;
         private double[] _y;
-        private double[,] _distance;
-        private double[,] _f;
-        private double _sum;
+        private readonly double[,] _distance;
+        private readonly double[,] _f;
+        private readonly double _sum;
 
         /// <summary>
         /// Class constructor.
@@ -24,12 +24,12 @@ namespace ADN.TimeSeries
         public DTW(double[] x, double[] y, int sakoeChibaBand = -1)
         {
             // Check arguments
-            if (ReferenceEquals(x, null) || x.Length <= 0)
+            if (x is null || x.Length <= 0)
             {
                 throw (new ArgumentNullException("x"));
             }
 
-            if (ReferenceEquals(y, null) || y.Length <= 0)
+            if (y is null || y.Length <= 0)
             {
                 throw (new ArgumentNullException("y"));
             }

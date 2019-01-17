@@ -18,12 +18,12 @@ namespace ADN.TimeSeries
         static public double Distance(double[] serie1, double[] serie2)
         {
             // Check arguments
-            if (ReferenceEquals(serie1, null) || serie1.Length <= 0)
+            if (serie1 is null || serie1.Length <= 0)
             {
                 throw (new ArgumentNullException("serie1"));
             }
 
-            if (ReferenceEquals(serie2, null) || serie2.Length <= 0)
+            if (serie2 is null || serie2.Length <= 0)
             {
                 throw (new ArgumentNullException("serie2"));
             }

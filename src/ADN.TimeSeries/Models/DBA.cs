@@ -1,5 +1,4 @@
-﻿using ADN.Helpers.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +18,7 @@ namespace ADN.TimeSeries
         public static double[] Average(List<double[]> series, int maxIterations = 100)
         {
             // Check arguments
-            if (ReferenceEquals(series, null) || series.Count <= 0)
+            if (series is null || series.Count <= 0)
             {
                 throw (new ArgumentNullException("series"));
             }
@@ -98,20 +97,6 @@ namespace ADN.TimeSeries
             }
 
             return average;
-        }
-
-        private static double[] Detrend(double[] input)
-        {
-            int len = input.Length;
-            double step = (input[len - 1] - input[0]) / len;
-            double[] output = new double[len];
-
-            for (int i = 0; i < len; i++)
-            {
-                output[i] = input[i] - step * i;
-            }
-
-            return output;
         }
     }
 }
