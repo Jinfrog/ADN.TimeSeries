@@ -15,6 +15,19 @@ namespace ADN.TimeSeries
         /// </summary>
         /// <param name="series">Supplied series.</param>
         /// <param name="maxIterations">Maximum number of iterations to calculate the average.</param>
+        /// <exception cref="ArgumentNullException">series is null</exception>
+        /// <example>
+        /// <code lang="csharp">
+        /// var series = new List<double[]>() {
+        ///     new double[] { 0, 0, 0, 0, 0 },
+        ///     new double[] { 2, 2, 2, 2, 2 }};
+        /// var result = DBA.Average(value);
+        /// 
+        /// /*
+        /// result is { 1, 1, 1, 1, 1 }
+        /// */
+        /// </code>
+        /// </example>
         public static double[] Average(List<double[]> series, int maxIterations = 100)
         {
             // Check arguments

@@ -15,6 +15,19 @@ namespace ADN.TimeSeries
         /// <param name="serie1">The first <see cref="Array"/> that contains data to calculate the Euclidean distance.</param>
         /// <param name="serie2">The second <see cref="Array"/> that contains data to calculate the Euclidean distance.</param>
         /// <returns>Value of the calculated Euclidean distance.</returns>
+        /// <exception cref="ArgumentNullException">serie1 is null</exception>
+        /// <exception cref="ArgumentNullException">serie2 is null</exception>
+        /// <example>
+        /// <code lang="csharp">
+        /// var serie1 =  new double[] { 0, 0, 0, 0, 0, 0 };
+        /// var serie2 = new double[] { 1, 2, 3, 4, 5, 6 };
+        /// var result = Euclidean.Distance(serie1, serie2);
+        /// 
+        /// /*
+        /// result is 9.53
+        /// */
+        /// </code>
+        /// </example>
         static public double Distance(double[] serie1, double[] serie2)
         {
             // Check arguments

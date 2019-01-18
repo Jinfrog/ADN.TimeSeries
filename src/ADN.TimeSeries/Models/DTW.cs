@@ -21,6 +21,16 @@ namespace ADN.TimeSeries
         /// <param name="x">The first <see cref="Array"/> that contains data to calculate the DTW.</param>
         /// <param name="y">The second <see cref="Array"/> that contains data to calculate the DTW.</param>
         /// <param name="sakoeChibaBand">Size of limits to warping path of first <see cref="Array"/> to be inside the second <see cref="Array"/>.</param>
+        /// <exception cref="ArgumentNullException">x is null</exception>
+        /// <exception cref="ArgumentNullException">y is null</exception>
+        /// <example>
+        /// <code lang="csharp">
+        /// var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
+        /// var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
+        /// int sakoeChibaBand = -1;
+        /// var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+        /// </code>
+        /// </example>
         public DTW(double[] x, double[] y, int sakoeChibaBand = -1)
         {
             // Check arguments
@@ -89,6 +99,19 @@ namespace ADN.TimeSeries
         /// Get the value of the calculated DTW.
         /// </summary>
         /// <returns>Value of the calculated DTW.</returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
+        /// var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
+        /// int sakoeChibaBand = -1;
+        /// var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+        /// var result = dtw.GetSum();
+        /// 
+        /// /*
+        /// result is 18
+        /// */
+        /// </code>
+        /// </example>
         public double GetSum()
         {
             return _sum;
@@ -98,6 +121,19 @@ namespace ADN.TimeSeries
         /// Get the path of the calculated DTW.
         /// </summary>
         /// <returns>Path of the calculated DTW.</returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// var serie1= new double[] { 0, 1, 2, 3, 4 };
+        /// var serie2 = new double[] { 0, 1, 2, 3, 4 };
+        /// int sakoeChibaBand = -1;
+        /// var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+        /// var result = dtw.GetPath();
+        /// 
+        /// /*
+        /// result is [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+        /// */
+        /// </code>
+        /// </example>
         public Tuple<int, int>[] GetPath()
         {
             List<Tuple<int, int>> tupleBackward = ComputePathBackward(_x.Length, _y.Length);

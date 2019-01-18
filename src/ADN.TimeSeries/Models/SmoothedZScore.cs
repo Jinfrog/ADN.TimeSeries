@@ -22,6 +22,7 @@ namespace ADN.TimeSeries
         /// Set the threshold. The z-score at which the algorithm signals.
         /// </summary>
         /// <param name="threshold">Value to signal if a datapoint is out of standard deviations away from the moving mean.</param>
+        /// <exception cref="ArgumentException">threshold must be positive</exception>
         public void SetThreshold(double threshold)
         {
             // Check arguments
@@ -37,6 +38,7 @@ namespace ADN.TimeSeries
         /// Set the influence.
         /// </summary>
         /// <param name="influence">The influence (between 0 and 1) of new signals on the mean and standard deviation.</param>
+        /// <exception cref="ArgumentException">influence must to be between 0 and 1</exception>
         public void SetInfluence(double influence)
         {
             // Check arguments
@@ -52,6 +54,7 @@ namespace ADN.TimeSeries
         /// Set the lag.
         /// </summary>
         /// <param name="lag">The lag of the moving window.</param>
+        /// <exception cref="ArgumentException">lag must be strictly positive</exception>
         public void SetLag(int lag)
         {
             // Check arguments
@@ -68,6 +71,20 @@ namespace ADN.TimeSeries
         /// </summary>
         /// <param name="value">New point.</param>
         /// <returns>Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.</returns>
+        /// <example>
+        /// <code lang="csharp">
+        /// var smoothedZScore = new SmoothedZScore();
+        /// double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 };
+        /// 
+        /// for (int i = 0; i<points.Length; i++)
+        /// {
+        ///     double detectedValue = smoothedZScore.Add(value[i]);
+        /// 
+        ///     if (detectedValue == 1) Console.WriteLine("Detected raise flank");
+        ///     else if (detectedValue == -1) Console.WriteLine("Detected falling flank");
+        /// }
+        /// </code>
+        /// </example>
         public int Add(double value)
         {
             int signal = 0;
