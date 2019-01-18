@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ADN.TimeSeries</name>
+    </assembly>
+    <members>
+        <member name="T:ADN.TimeSeries.DBA">
+            <summary>
+            A static class that implements DTW Barycenter Averaging.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.DBA.Average(System.Collections.Generic.List{System.Double[]},System.Int32)" -->
+        <member name="T:ADN.TimeSeries.DTW">
+            <summary>
+            Class to calculate the Dynamic Time Wrapping.
+            </summary>
+        </member>
+        <member name="M:ADN.TimeSeries.DTW.#ctor(System.Double[],System.Double[],System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="x">The first <see cref="T:System.Array"/> that contains data to calculate the DTW.</param>
+            <param name="y">The second <see cref="T:System.Array"/> that contains data to calculate the DTW.</param>
+            <param name="sakoeChibaBand">Size of limits to warping path of first <see cref="T:System.Array"/> to be inside the second <see cref="T:System.Array"/>.</param>
+            <exception cref="T:System.ArgumentNullException">x is null</exception>
+            <exception cref="T:System.ArgumentNullException">y is null</exception>
+            <example>
+            <code lang="csharp">
+            var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
+            var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
+            int sakoeChibaBand = -1;
+            var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+            </code>
+            </example>
+        </member>
+        <member name="M:ADN.TimeSeries.DTW.GetSum">
+            <summary>
+            Get the value of the calculated DTW.
+            </summary>
+            <returns>Value of the calculated DTW.</returns>
+            <example>
+            <code lang="csharp">
+            var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
+            var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
+            int sakoeChibaBand = -1;
+            var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+            var result = dtw.GetSum();
+            
+            /*
+            result is 18
+            */
+            </code>
+            </example>
+        </member>
+        <member name="M:ADN.TimeSeries.DTW.GetPath">
+            <summary>
+            Get the path of the calculated DTW.
+            </summary>
+            <returns>Path of the calculated DTW.</returns>
+            <example>
+            <code lang="csharp">
+            var serie1= new double[] { 0, 1, 2, 3, 4 };
+            var serie2 = new double[] { 0, 1, 2, 3, 4 };
+            int sakoeChibaBand = -1;
+            var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+            var result = dtw.GetPath();
+            
+            /*
+            result is [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+            */
+            </code>
+            </example>
+        </member>
+        <member name="T:ADN.TimeSeries.Euclidean">
+            <summary>
+            A static class that implements Euclidean distance algorithm.
+            </summary>
+        </member>
+        <member name="M:ADN.TimeSeries.Euclidean.Distance(System.Double[],System.Double[])">
+            <summary>
+            Get the value of the calculated Euclidean distance.
+            </summary>
+            <param name="serie1">The first <see cref="T:System.Array"/> that contains data to calculate the Euclidean distance.</param>
+            <param name="serie2">The second <see cref="T:System.Array"/> that contains data to calculate the Euclidean distance.</param>
+            <returns>Value of the calculated Euclidean distance.</returns>
+            <exception cref="T:System.ArgumentNullException">serie1 is null</exception>
+            <exception cref="T:System.ArgumentNullException">serie2 is null</exception>
+            <example>
+            <code lang="csharp">
+            var serie1 =  new double[] { 0, 0, 0, 0, 0, 0 };
+            var serie2 = new double[] { 1, 2, 3, 4, 5, 6 };
+            var result = Euclidean.Distance(serie1, serie2);
+            
+            /*
+            result is 9.53
+            */
+            </code>
+            </example>
+        </member>
+        <member name="T:ADN.TimeSeries.SmoothedZScore">
+            <summary>
+            Class that implements thresholding algorithm.
+            </summary>
+        </member>
+        <member name="M:ADN.TimeSeries.SmoothedZScore.SetThreshold(System.Double)">
+            <summary>
+            Set the threshold. The z-score at which the algorithm signals.
+            </summary>
+            <param name="threshold">Value to signal if a datapoint is out of standard deviations away from the moving mean.</param>
+            <exception cref="T:System.ArgumentException">threshold must be positive</exception>
+        </member>
+        <member name="M:ADN.TimeSeries.SmoothedZScore.SetInfluence(System.Double)">
+            <summary>
+            Set the influence.
+            </summary>
+            <param name="influence">The influence (between 0 and 1) of new signals on the mean and standard deviation.</param>
+            <exception cref="T:System.ArgumentException">influence must to be between 0 and 1</exception>
+        </member>
+        <member name="M:ADN.TimeSeries.SmoothedZScore.SetLag(System.Int32)">
+            <summary>
+            Set the lag.
+            </summary>
+            <param name="lag">The lag of the moving window.</param>
+            <exception cref="T:System.ArgumentException">lag must be strictly positive</exception>
+        </member>
+        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.SmoothedZScore.Add(System.Double)" -->
+    </members>
+</doc>
