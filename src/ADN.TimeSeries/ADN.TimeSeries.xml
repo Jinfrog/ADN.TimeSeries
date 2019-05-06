@@ -9,7 +9,7 @@
             A static class that implements DTW Barycenter Averaging.
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.DBA.Average(System.Collections.Generic.List{System.Double[]},System.Int32)" -->
+        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.DBA.Average(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32)" -->
         <member name="T:ADN.TimeSeries.DTW">
             <summary>
             Class to calculate the Dynamic Time Wrapping.

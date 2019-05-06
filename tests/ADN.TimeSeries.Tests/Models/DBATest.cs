@@ -13,15 +13,13 @@ namespace ADN.TimeSeries.Tests
         public void Average(List<double[]> value, double[] expected)
         {
             var result = DBA.Average(value);
-
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void Average_Exception_value_Empty()
         {
-            List<double[]> value = new List<double[]>();
-
+            var value = new List<double[]>();
             Assert.Throws<ArgumentNullException>(() => DBA.Average(value));
         }
 
@@ -29,7 +27,6 @@ namespace ADN.TimeSeries.Tests
         public void Average_Exception_value_Null()
         {
             List<double[]> value = null;
-
             Assert.Throws<ArgumentNullException>(() => DBA.Average(value));
         }
 

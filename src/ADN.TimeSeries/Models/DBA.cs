@@ -28,25 +28,25 @@ namespace ADN.TimeSeries
         /// */
         /// </code>
         /// </example>
-        public static double[] Average(List<double[]> series, int maxIterations = 100)
+        public static double[] Average(IEnumerable<double[]> series, int maxIterations = 100)
         {
             // Check arguments
-            if (series is null || series.Count <= 0)
+            if (series is null || series.Count() <= 0)
             {
                 throw (new ArgumentNullException("series"));
             }
 
-            if (series.Count == 1)
+            if (series.Count() == 1)
             {
-                return series[0];
+                return series.ElementAt(0);
             }
 
             int length = 0;
-            for (int i = 0; i < series.Count; i++)
+            for (int i = 0; i < series.Count(); i++)
             {
-                length += series[i].Length;
+                length += series.ElementAt(i).Length;
             }
-            length /= series.Count;
+            length /= series.Count();
 
             double[] average = new double[length];
             for (int i = 0; i < length; i++)
@@ -102,9 +102,9 @@ namespace ADN.TimeSeries
                 //calculate Euclidean distance to stop the loop if no further improvement can be made
                 double[] average1 = average;
                 totalDist = 0;
-                for (int i = 0; i < series.Count; i++)
+                for (int i = 0; i < series.Count(); i++)
                 {
-                    totalDist += Euclidean.Distance(series[i], average1);
+                    totalDist += Euclidean.Distance(series.ElementAt(i), average1);
                 }
                 count++;
             }
