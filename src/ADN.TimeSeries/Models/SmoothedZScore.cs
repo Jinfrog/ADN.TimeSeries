@@ -76,7 +76,7 @@ namespace ADN.TimeSeries
         /// var smoothedZScore = new SmoothedZScore();
         /// double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 };
         /// 
-        /// for (int i = 0; i < points.Length; i++)
+        /// <![CDATA[for (int i = 0; i < points.Length; i++)]]>
         /// {
         ///     double detectedValue = smoothedZScore.Add(value[i]);
         /// 

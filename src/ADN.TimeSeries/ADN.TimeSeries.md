@@ -4,6 +4,7 @@
 ## Contents
 
 - [DBA](#T-ADN-TimeSeries-DBA 'ADN.TimeSeries.DBA')
+  - [Average(series,maxIterations)](#M-ADN-TimeSeries-DBA-Average-System-Collections-Generic-IEnumerable{System-Double[]},System-Int32- 'ADN.TimeSeries.DBA.Average(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32)')
 - [DTW](#T-ADN-TimeSeries-DTW 'ADN.TimeSeries.DTW')
   - [#ctor(x,y,sakoeChibaBand)](#M-ADN-TimeSeries-DTW-#ctor-System-Double[],System-Double[],System-Int32- 'ADN.TimeSeries.DTW.#ctor(System.Double[],System.Double[],System.Int32)')
   - [GetPath()](#M-ADN-TimeSeries-DTW-GetPath 'ADN.TimeSeries.DTW.GetPath')
@@ -11,6 +12,7 @@
 - [Euclidean](#T-ADN-TimeSeries-Euclidean 'ADN.TimeSeries.Euclidean')
   - [Distance(serie1,serie2)](#M-ADN-TimeSeries-Euclidean-Distance-System-Double[],System-Double[]- 'ADN.TimeSeries.Euclidean.Distance(System.Double[],System.Double[])')
 - [SmoothedZScore](#T-ADN-TimeSeries-SmoothedZScore 'ADN.TimeSeries.SmoothedZScore')
+  - [Add(value)](#M-ADN-TimeSeries-SmoothedZScore-Add-System-Double- 'ADN.TimeSeries.SmoothedZScore.Add(System.Double)')
   - [SetInfluence(influence)](#M-ADN-TimeSeries-SmoothedZScore-SetInfluence-System-Double- 'ADN.TimeSeries.SmoothedZScore.SetInfluence(System.Double)')
   - [SetLag(lag)](#M-ADN-TimeSeries-SmoothedZScore-SetLag-System-Int32- 'ADN.TimeSeries.SmoothedZScore.SetLag(System.Int32)')
   - [SetThreshold(threshold)](#M-ADN-TimeSeries-SmoothedZScore-SetThreshold-System-Double- 'ADN.TimeSeries.SmoothedZScore.SetThreshold(System.Double)')
@@ -25,6 +27,32 @@ ADN.TimeSeries
 ##### Summary
 
 A static class that implements DTW Barycenter Averaging.
+
+<a name='M-ADN-TimeSeries-DBA-Average-System-Collections-Generic-IEnumerable{System-Double[]},System-Int32-'></a>
+### Average(series,maxIterations) `method`
+
+##### Summary
+
+Generate average of supplied series.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| series | [System.Collections.Generic.IEnumerable{System.Double[]}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double[]}') | Supplied series. |
+| maxIterations | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Maximum number of iterations to calculate the average. |
+
+##### Exceptions
+
+| Name | Description |
+| ---- | ----------- |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | series is null |
+
+##### Example
+
+```csharp
+<![CDATA[var series = new List<double[]>() {]]> 
+```
 
 <a name='T-ADN-TimeSeries-DTW'></a>
 ## DTW `type`
@@ -181,6 +209,30 @@ ADN.TimeSeries
 ##### Summary
 
 Class that implements thresholding algorithm.
+
+<a name='M-ADN-TimeSeries-SmoothedZScore-Add-System-Double-'></a>
+### Add(value) `method`
+
+##### Summary
+
+Add a new point.
+
+##### Returns
+
+Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| value | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | New point. |
+
+##### Example
+
+```csharp
+var smoothedZScore = new SmoothedZScore();
+double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 }; 
+```
 
 <a name='M-ADN-TimeSeries-SmoothedZScore-SetInfluence-System-Double-'></a>
 ### SetInfluence(influence) `method`

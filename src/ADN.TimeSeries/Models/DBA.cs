@@ -18,7 +18,7 @@ namespace ADN.TimeSeries
         /// <exception cref="ArgumentNullException">series is null</exception>
         /// <example>
         /// <code lang="csharp">
-        /// var series = new List<double[]>() {
+        /// <![CDATA[var series = new List<double[]>() {]]>
         ///     new double[] { 0, 0, 0, 0, 0 },
         ///     new double[] { 2, 2, 2, 2, 2 }};
         /// var result = DBA.Average(value);

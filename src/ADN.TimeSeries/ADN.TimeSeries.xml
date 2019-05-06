@@ -9,7 +9,26 @@
             A static class that implements DTW Barycenter Averaging.
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.DBA.Average(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32)" -->
+        <member name="M:ADN.TimeSeries.DBA.Average(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32)">
+            <summary>
+            Generate average of supplied series.
+            </summary>
+            <param name="series">Supplied series.</param>
+            <param name="maxIterations">Maximum number of iterations to calculate the average.</param>
+            <exception cref="T:System.ArgumentNullException">series is null</exception>
+            <example>
+            <code lang="csharp">
+            <![CDATA[var series = new List<double[]>() {]]>
+                new double[] { 0, 0, 0, 0, 0 },
+                new double[] { 2, 2, 2, 2, 2 }};
+            var result = DBA.Average(value);
+            
+            /*
+            result is { 1, 1, 1, 1, 1 }
+            */
+            </code>
+            </example>
+        </member>
         <member name="T:ADN.TimeSeries.DTW">
             <summary>
             Class to calculate the Dynamic Time Wrapping.
@@ -123,6 +142,26 @@
             <param name="lag">The lag of the moving window.</param>
             <exception cref="T:System.ArgumentException">lag must be strictly positive</exception>
         </member>
-        <!-- El comentario XML con formato incorrecto se ha omitido para el miembro "M:ADN.TimeSeries.SmoothedZScore.Add(System.Double)" -->
+        <member name="M:ADN.TimeSeries.SmoothedZScore.Add(System.Double)">
+            <summary>
+            Add a new point.
+            </summary>
+            <param name="value">New point.</param>
+            <returns>Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.</returns>
+            <example>
+            <code lang="csharp">
+            var smoothedZScore = new SmoothedZScore();
+            double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 };
+            
+            <![CDATA[for (int i = 0; i < points.Length; i++)]]>
+            {
+                double detectedValue = smoothedZScore.Add(value[i]);
+            
+                if (detectedValue == 1) Console.WriteLine("Detected raise flank");
+                else if (detectedValue == -1) Console.WriteLine("Detected falling flank");
+            }
+            </code>
+            </example>
+        </member>
     </members>
 </doc>
