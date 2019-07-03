@@ -8,7 +8,7 @@ namespace ADN.TimeSeries
     /// <summary>
     /// Class that implements thresholding algorithm.
     /// </summary>
-    public class SmoothedZScore
+    public class RobustZScore
     {
         private List<double> _filteredY = new List<double>();
         private List<double> _avgFilter = new List<double>();
@@ -106,7 +106,7 @@ namespace ADN.TimeSeries
                 }
 
                 //Adjust the filters
-                _avgFilter.Add(_filteredY.Mean(i - _lag, i));
+                _avgFilter.Add(_filteredY.Median(i - _lag, i));
                 _stdFilter.Add(_filteredY.StandardDeviation(i - _lag, i));
 
                 // remove unused elements
@@ -119,7 +119,7 @@ namespace ADN.TimeSeries
                 _filteredY.Add(value);
 
                 //Adjust the filters
-                _avgFilter.Add(_filteredY.Mean(0, i));
+                _avgFilter.Add(_filteredY.Median(0, i));
                 _stdFilter.Add(_filteredY.StandardDeviation(0, i));
             }
 

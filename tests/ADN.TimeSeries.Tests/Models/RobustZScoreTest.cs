@@ -6,12 +6,12 @@ using Xunit;
 
 namespace ADN.TimeSeries.Tests
 {
-    public class SmoothedZScoreTest
+    public class RobustZScoreTest
     {
         [Fact]
         public void SetThreshold_Exception()
         {
-            var zScore = new SmoothedZScore();
+            var zScore = new RobustZScore();
 
             Assert.Throws<ArgumentException>(() => zScore.SetThreshold(-1));
         }
@@ -19,7 +19,7 @@ namespace ADN.TimeSeries.Tests
         [Fact]
         public void SetInfluence_Exception_Bottom()
         {
-            var zScore = new SmoothedZScore();
+            var zScore = new RobustZScore();
 
             Assert.Throws<ArgumentException>(() => zScore.SetInfluence(-1));
         }
@@ -27,7 +27,7 @@ namespace ADN.TimeSeries.Tests
         [Fact]
         public void SetInfluence_Exception_Top()
         {
-            var zScore = new SmoothedZScore();
+            var zScore = new RobustZScore();
 
             Assert.Throws<ArgumentException>(() => zScore.SetInfluence(2));
         }
@@ -35,7 +35,7 @@ namespace ADN.TimeSeries.Tests
         [Fact]
         public void SetLag_Exception()
         {
-            var zScore = new SmoothedZScore();
+            var zScore = new RobustZScore();
 
             Assert.Throws<ArgumentException>(() => zScore.SetLag(0));
         }
@@ -44,7 +44,7 @@ namespace ADN.TimeSeries.Tests
         [ClassData(typeof(AddData))]
         public void Add(double[] value, double threshold, double influence, int lag, int expectedRisingFlank, int expectedFallingFlank)
         {
-            var zScore = new SmoothedZScore();
+            var zScore = new RobustZScore();
             zScore.SetThreshold(threshold);
             zScore.SetInfluence(influence);
             zScore.SetLag(lag);
