@@ -108,6 +108,11 @@ namespace ADN.TimeSeries
                 //Adjust the filters
                 _avgFilter.Add(_filteredY.Mean(i - _lag, i));
                 _stdFilter.Add(_filteredY.StandardDeviation(i - _lag, i));
+
+                // remove unused elements
+                _filteredY.RemoveAt(0);
+                _avgFilter.RemoveAt(0);
+                _stdFilter.RemoveAt(0);
             }
             else
             {
