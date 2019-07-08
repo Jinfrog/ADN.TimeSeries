@@ -2,8 +2,16 @@ language: csharp
 solution: ADN.TimeSeries.sln
 mono: latest
 dotnet: 2.0.0
-script:
+
+addons:
+  sonarcloud:
+    organization: "andresdigiovanni-github"
+
+before_install:
+  - bash ./tools/travis-ci-install-sonar.sh
+
+install:
   - dotnet restore
-  - dotnet build ./src/ADN.TimeSeries/
-  - dotnet build ./tests/ADN.TimeSeries.Tests/
-  - dotnet test ./tests/ADN.TimeSeries.Tests/
+
+script:
+  - bash ./tools/travis-ci-build.sh

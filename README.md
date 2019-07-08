@@ -5,6 +5,8 @@ ADN.TimeSeries is a cross-platform open-source library which provides time serie
 [![Build Status](https://travis-ci.org/andresdigiovanni/ADN.TimeSeries.svg?branch=master)](https://travis-ci.org/andresdigiovanni/ADN.TimeSeries)
 [![NuGet](https://img.shields.io/nuget/v/ADN.TimeSeries.svg)](https://www.nuget.org/packages/ADN.TimeSeries/)
 [![BCH compliance](https://bettercodehub.com/edge/badge/andresdigiovanni/ADN.TimeSeries?branch=master)](https://bettercodehub.com/)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=andresdigiovanni_ADN.TimeSeries&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=andresdigiovanni_ADN.TimeSeries)
+[![Quality](https://sonarcloud.io/api/project_badges/measure?project=andresdigiovanni_ADN.TimeSeries&metric=alert_status)](https://sonarcloud.io/dashboard?id=andresdigiovanni_ADN.TimeSeries)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation

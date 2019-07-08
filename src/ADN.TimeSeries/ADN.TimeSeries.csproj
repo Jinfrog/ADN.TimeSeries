@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ProjectGuid>{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}</ProjectGuid>
     <Version>1.2.0</Version>
     <Title>ADN.TimeSeries</Title>
     <Authors>Andrés Di Giovanni</Authors>
