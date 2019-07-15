@@ -118,78 +118,41 @@
         </member>
         <member name="T:ADN.TimeSeries.RobustZScore">
             <summary>
-            Class that implements thresholding algorithm.
+            Class that implements thresholding algorithm with robust average filter.
             </summary>
-        </member>
-        <member name="M:ADN.TimeSeries.RobustZScore.SetThreshold(System.Double)">
-            <summary>
-            Set the threshold. The z-score at which the algorithm signals.
-            </summary>
-            <param name="threshold">Value to signal if a datapoint is out of standard deviations away from the moving mean.</param>
-            <exception cref="T:System.ArgumentException">threshold must be positive</exception>
-        </member>
-        <member name="M:ADN.TimeSeries.RobustZScore.SetInfluence(System.Double)">
-            <summary>
-            Set the influence.
-            </summary>
-            <param name="influence">The influence (between 0 and 1) of new signals on the mean and standard deviation.</param>
-            <exception cref="T:System.ArgumentException">influence must to be between 0 and 1</exception>
-        </member>
-        <member name="M:ADN.TimeSeries.RobustZScore.SetLag(System.Int32)">
-            <summary>
-            Set the lag.
-            </summary>
-            <param name="lag">The lag of the moving window.</param>
-            <exception cref="T:System.ArgumentException">lag must be strictly positive</exception>
-        </member>
-        <member name="M:ADN.TimeSeries.RobustZScore.Add(System.Double)">
-            <summary>
-            Add a new point.
-            </summary>
-            <param name="value">New point.</param>
-            <returns>Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.</returns>
-            <example>
-            <code lang="csharp">
-            var smoothedZScore = new SmoothedZScore();
-            double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 };
-            
-            <![CDATA[for (int i = 0; i < points.Length; i++)]]>
-            {
-                double detectedValue = smoothedZScore.Add(value[i]);
-            
-                if (detectedValue == 1) Console.WriteLine("Detected raise flank");
-                else if (detectedValue == -1) Console.WriteLine("Detected falling flank");
-            }
-            </code>
-            </example>
         </member>
         <member name="T:ADN.TimeSeries.SmoothedZScore">
             <summary>
-            Class that implements thresholding algorithm.
+            Class that implements thresholding algorithm with smoothed average filter.
             </summary>
         </member>
-        <member name="M:ADN.TimeSeries.SmoothedZScore.SetThreshold(System.Double)">
+        <member name="T:ADN.TimeSeries.ZScore">
+            <summary>
+            Abstract class that implements thresholding algorithm.
+            </summary>
+        </member>
+        <member name="M:ADN.TimeSeries.ZScore.SetThreshold(System.Double)">
             <summary>
             Set the threshold. The z-score at which the algorithm signals.
             </summary>
             <param name="threshold">Value to signal if a datapoint is out of standard deviations away from the moving mean.</param>
             <exception cref="T:System.ArgumentException">threshold must be positive</exception>
         </member>
-        <member name="M:ADN.TimeSeries.SmoothedZScore.SetInfluence(System.Double)">
+        <member name="M:ADN.TimeSeries.ZScore.SetInfluence(System.Double)">
             <summary>
             Set the influence.
             </summary>
             <param name="influence">The influence (between 0 and 1) of new signals on the mean and standard deviation.</param>
             <exception cref="T:System.ArgumentException">influence must to be between 0 and 1</exception>
         </member>
-        <member name="M:ADN.TimeSeries.SmoothedZScore.SetLag(System.Int32)">
+        <member name="M:ADN.TimeSeries.ZScore.SetLag(System.Int32)">
             <summary>
             Set the lag.
             </summary>
             <param name="lag">The lag of the moving window.</param>
             <exception cref="T:System.ArgumentException">lag must be strictly positive</exception>
         </member>
-        <member name="M:ADN.TimeSeries.SmoothedZScore.Add(System.Double)">
+        <member name="M:ADN.TimeSeries.ZScore.Add(System.Double)">
             <summary>
             Add a new point.
             </summary>

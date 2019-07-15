@@ -12,15 +12,12 @@
 - [Euclidean](#T-ADN-TimeSeries-Euclidean 'ADN.TimeSeries.Euclidean')
   - [Distance(serie1,serie2)](#M-ADN-TimeSeries-Euclidean-Distance-System-Double[],System-Double[]- 'ADN.TimeSeries.Euclidean.Distance(System.Double[],System.Double[])')
 - [RobustZScore](#T-ADN-TimeSeries-RobustZScore 'ADN.TimeSeries.RobustZScore')
-  - [Add(value)](#M-ADN-TimeSeries-RobustZScore-Add-System-Double- 'ADN.TimeSeries.RobustZScore.Add(System.Double)')
-  - [SetInfluence(influence)](#M-ADN-TimeSeries-RobustZScore-SetInfluence-System-Double- 'ADN.TimeSeries.RobustZScore.SetInfluence(System.Double)')
-  - [SetLag(lag)](#M-ADN-TimeSeries-RobustZScore-SetLag-System-Int32- 'ADN.TimeSeries.RobustZScore.SetLag(System.Int32)')
-  - [SetThreshold(threshold)](#M-ADN-TimeSeries-RobustZScore-SetThreshold-System-Double- 'ADN.TimeSeries.RobustZScore.SetThreshold(System.Double)')
 - [SmoothedZScore](#T-ADN-TimeSeries-SmoothedZScore 'ADN.TimeSeries.SmoothedZScore')
-  - [Add(value)](#M-ADN-TimeSeries-SmoothedZScore-Add-System-Double- 'ADN.TimeSeries.SmoothedZScore.Add(System.Double)')
-  - [SetInfluence(influence)](#M-ADN-TimeSeries-SmoothedZScore-SetInfluence-System-Double- 'ADN.TimeSeries.SmoothedZScore.SetInfluence(System.Double)')
-  - [SetLag(lag)](#M-ADN-TimeSeries-SmoothedZScore-SetLag-System-Int32- 'ADN.TimeSeries.SmoothedZScore.SetLag(System.Int32)')
-  - [SetThreshold(threshold)](#M-ADN-TimeSeries-SmoothedZScore-SetThreshold-System-Double- 'ADN.TimeSeries.SmoothedZScore.SetThreshold(System.Double)')
+- [ZScore](#T-ADN-TimeSeries-ZScore 'ADN.TimeSeries.ZScore')
+  - [Add(value)](#M-ADN-TimeSeries-ZScore-Add-System-Double- 'ADN.TimeSeries.ZScore.Add(System.Double)')
+  - [SetInfluence(influence)](#M-ADN-TimeSeries-ZScore-SetInfluence-System-Double- 'ADN.TimeSeries.ZScore.SetInfluence(System.Double)')
+  - [SetLag(lag)](#M-ADN-TimeSeries-ZScore-SetLag-System-Int32- 'ADN.TimeSeries.ZScore.SetLag(System.Int32)')
+  - [SetThreshold(threshold)](#M-ADN-TimeSeries-ZScore-SetThreshold-System-Double- 'ADN.TimeSeries.ZScore.SetThreshold(System.Double)')
 
 <a name='T-ADN-TimeSeries-DBA'></a>
 ## DBA `type`
@@ -213,88 +210,7 @@ ADN.TimeSeries
 
 ##### Summary
 
-Class that implements thresholding algorithm.
-
-<a name='M-ADN-TimeSeries-RobustZScore-Add-System-Double-'></a>
-### Add(value) `method`
-
-##### Summary
-
-Add a new point.
-
-##### Returns
-
-Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| value | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | New point. |
-
-##### Example
-
-```csharp
-var smoothedZScore = new SmoothedZScore();
-double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 }; 
-```
-
-<a name='M-ADN-TimeSeries-RobustZScore-SetInfluence-System-Double-'></a>
-### SetInfluence(influence) `method`
-
-##### Summary
-
-Set the influence.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| influence | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The influence (between 0 and 1) of new signals on the mean and standard deviation. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | influence must to be between 0 and 1 |
-
-<a name='M-ADN-TimeSeries-RobustZScore-SetLag-System-Int32-'></a>
-### SetLag(lag) `method`
-
-##### Summary
-
-Set the lag.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| lag | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The lag of the moving window. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | lag must be strictly positive |
-
-<a name='M-ADN-TimeSeries-RobustZScore-SetThreshold-System-Double-'></a>
-### SetThreshold(threshold) `method`
-
-##### Summary
-
-Set the threshold. The z-score at which the algorithm signals.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Value to signal if a datapoint is out of standard deviations away from the moving mean. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | threshold must be positive |
+Class that implements thresholding algorithm with robust average filter.
 
 <a name='T-ADN-TimeSeries-SmoothedZScore'></a>
 ## SmoothedZScore `type`
@@ -305,9 +221,20 @@ ADN.TimeSeries
 
 ##### Summary
 
-Class that implements thresholding algorithm.
+Class that implements thresholding algorithm with smoothed average filter.
 
-<a name='M-ADN-TimeSeries-SmoothedZScore-Add-System-Double-'></a>
+<a name='T-ADN-TimeSeries-ZScore'></a>
+## ZScore `type`
+
+##### Namespace
+
+ADN.TimeSeries
+
+##### Summary
+
+Abstract class that implements thresholding algorithm.
+
+<a name='M-ADN-TimeSeries-ZScore-Add-System-Double-'></a>
 ### Add(value) `method`
 
 ##### Summary
@@ -331,7 +258,7 @@ var smoothedZScore = new SmoothedZScore();
 double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 }; 
 ```
 
-<a name='M-ADN-TimeSeries-SmoothedZScore-SetInfluence-System-Double-'></a>
+<a name='M-ADN-TimeSeries-ZScore-SetInfluence-System-Double-'></a>
 ### SetInfluence(influence) `method`
 
 ##### Summary
@@ -350,7 +277,7 @@ Set the influence.
 | ---- | ----------- |
 | [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | influence must to be between 0 and 1 |
 
-<a name='M-ADN-TimeSeries-SmoothedZScore-SetLag-System-Int32-'></a>
+<a name='M-ADN-TimeSeries-ZScore-SetLag-System-Int32-'></a>
 ### SetLag(lag) `method`
 
 ##### Summary
@@ -369,7 +296,7 @@ Set the lag.
 | ---- | ----------- |
 | [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | lag must be strictly positive |
 
-<a name='M-ADN-TimeSeries-SmoothedZScore-SetThreshold-System-Double-'></a>
+<a name='M-ADN-TimeSeries-ZScore-SetThreshold-System-Double-'></a>
 ### SetThreshold(threshold) `method`
 
 ##### Summary
