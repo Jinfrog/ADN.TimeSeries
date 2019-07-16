@@ -1,119 +1,134 @@
-<a name='assembly'></a>
 # ADN.TimeSeries
 
-## Contents
+# Content
 
-- [DBA](#T-ADN-TimeSeries-DBA 'ADN.TimeSeries.DBA')
-  - [Average(series,maxIterations)](#M-ADN-TimeSeries-DBA-Average-System-Collections-Generic-IEnumerable{System-Double[]},System-Int32- 'ADN.TimeSeries.DBA.Average(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32)')
-- [DTW](#T-ADN-TimeSeries-DTW 'ADN.TimeSeries.DTW')
-  - [#ctor(x,y,sakoeChibaBand)](#M-ADN-TimeSeries-DTW-#ctor-System-Double[],System-Double[],System-Int32- 'ADN.TimeSeries.DTW.#ctor(System.Double[],System.Double[],System.Int32)')
-  - [GetPath()](#M-ADN-TimeSeries-DTW-GetPath 'ADN.TimeSeries.DTW.GetPath')
-  - [GetSum()](#M-ADN-TimeSeries-DTW-GetSum 'ADN.TimeSeries.DTW.GetSum')
-- [Euclidean](#T-ADN-TimeSeries-Euclidean 'ADN.TimeSeries.Euclidean')
-  - [Distance(serie1,serie2)](#M-ADN-TimeSeries-Euclidean-Distance-System-Double[],System-Double[]- 'ADN.TimeSeries.Euclidean.Distance(System.Double[],System.Double[])')
-- [RobustZScore](#T-ADN-TimeSeries-RobustZScore 'ADN.TimeSeries.RobustZScore')
-- [SmoothedZScore](#T-ADN-TimeSeries-SmoothedZScore 'ADN.TimeSeries.SmoothedZScore')
-- [ZScore](#T-ADN-TimeSeries-ZScore 'ADN.TimeSeries.ZScore')
-  - [Add(value)](#M-ADN-TimeSeries-ZScore-Add-System-Double- 'ADN.TimeSeries.ZScore.Add(System.Double)')
-  - [SetInfluence(influence)](#M-ADN-TimeSeries-ZScore-SetInfluence-System-Double- 'ADN.TimeSeries.ZScore.SetInfluence(System.Double)')
-  - [SetLag(lag)](#M-ADN-TimeSeries-ZScore-SetLag-System-Int32- 'ADN.TimeSeries.ZScore.SetLag(System.Int32)')
-  - [SetThreshold(threshold)](#M-ADN-TimeSeries-ZScore-SetThreshold-System-Double- 'ADN.TimeSeries.ZScore.SetThreshold(System.Double)')
+- [DBA](#T:ADN.TimeSeries.DBA)
 
-<a name='T-ADN-TimeSeries-DBA'></a>
-## DBA `type`
+  - [Average(series, maxIterations)](#DBA.Average(series,maxIterations))
 
-##### Namespace
+- [DTW](#T:ADN.TimeSeries.DTW)
 
-ADN.TimeSeries
+  - [Constructor(x, y, sakoeChibaBand)](#DTW.#ctor(x,y,sakoeChibaBand))
 
-##### Summary
+  - [GetPath](#DTW.GetPath)
+
+  - [GetSum](#DTW.GetSum)
+
+- [Euclidean](#T:ADN.TimeSeries.Euclidean)
+
+  - [Distance(serie1, serie2)](#Euclidean.Distance(serie1,serie2))
+
+- [RobustZScore](#T:ADN.TimeSeries.RobustZScore)
+
+- [SmoothedZScore](#T:ADN.TimeSeries.SmoothedZScore)
+
+- [ZScore](#T:ADN.TimeSeries.ZScore)
+
+  - [Add(value)](#ZScore.Add(value))
+
+  - [SetInfluence(influence)](#ZScore.SetInfluence(influence))
+
+  - [SetLag(lag)](#ZScore.SetLag(lag))
+
+  - [SetThreshold(threshold)](#ZScore.SetThreshold(threshold))
+
+<a name='T:ADN.TimeSeries.DBA'></a>
+
+
+## DBA
 
 A static class that implements DTW Barycenter Averaging.
 
-<a name='M-ADN-TimeSeries-DBA-Average-System-Collections-Generic-IEnumerable{System-Double[]},System-Int32-'></a>
-### Average(series,maxIterations) `method`
+<a name='DBA.Average(series,maxIterations)'></a>
 
-##### Summary
+
+### Average(series, maxIterations)
 
 Generate average of supplied series.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| series | [System.Collections.Generic.IEnumerable{System.Double[]}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double[]}') | Supplied series. |
-| maxIterations | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Maximum number of iterations to calculate the average. |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | series is null |
+| series | *System.Collections.Generic.IEnumerable{System.Double[]}*<br>Supplied series. |
 
-##### Example
+#### Parameters
 
-```csharp
-<![CDATA[var series = new List<double[]>() {]]> 
+| maxIterations | *System.Int32*<br>Maximum number of iterations to calculate the average. |
+
+*System.ArgumentNullException:* series is null
+
+
+#### Example
+
+```csharpvar series = new List<double[]>() {
+new double[] { 0, 0, 0, 0, 0 },
+new double[] { 2, 2, 2, 2, 2 }};
+var result = DBA.Average(value);
+
+/*
+result is { 1, 1, 1, 1, 1 }
+*/
 ```
 
-<a name='T-ADN-TimeSeries-DTW'></a>
-## DTW `type`
+<a name='T:ADN.TimeSeries.DTW'></a>
 
-##### Namespace
 
-ADN.TimeSeries
-
-##### Summary
+## DTW
 
 Class to calculate the Dynamic Time Wrapping.
 
-<a name='M-ADN-TimeSeries-DTW-#ctor-System-Double[],System-Double[],System-Int32-'></a>
-### #ctor(x,y,sakoeChibaBand) `constructor`
+<a name='DTW.#ctor(x,y,sakoeChibaBand)'></a>
 
-##### Summary
+
+### Constructor(x, y, sakoeChibaBand)
 
 Class constructor.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| x | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | The first [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array')that contains data to calculate the DTW. |
-| y | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | The second [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array')that contains data to calculate the DTW. |
-| sakoeChibaBand | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Size of limits to warping path of first [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array')to be inside the second [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array'). |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | x is null |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | y is null |
+| x | *System.Double[]*<br>The first that contains data to calculate the DTW. |
 
-##### Example
+#### Parameters
+
+| y | *System.Double[]*<br>The second that contains data to calculate the DTW. |
+
+#### Parameters
+
+| sakoeChibaBand | *System.Int32*<br>Size of limits to warping path of first to be inside the second . |
+
+*System.ArgumentNullException:* x is null
+
+*System.ArgumentNullException:* y is null
+
+
+#### Example
 
 ```csharp
 var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
 var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
 int sakoeChibaBand = -1;
-var dtw = new DTW(serie1, serie2, sakoeChibaBand); 
+var dtw = new DTW(serie1, serie2, sakoeChibaBand);
 ```
 
-<a name='M-ADN-TimeSeries-DTW-GetPath'></a>
-### GetPath() `method`
+<a name='DTW.GetPath'></a>
 
-##### Summary
+
+### GetPath
 
 Get the path of the calculated DTW.
 
-##### Returns
+
+#### Returns
 
 Path of the calculated DTW.
 
-##### Parameters
 
-This method has no parameters.
-
-##### Example
+#### Example
 
 ```csharp
 var serie1= new double[] { 0, 1, 2, 3, 4 };
@@ -121,27 +136,26 @@ var serie2 = new double[] { 0, 1, 2, 3, 4 };
 int sakoeChibaBand = -1;
 var dtw = new DTW(serie1, serie2, sakoeChibaBand);
 var result = dtw.GetPath();
+
 /*
 result is [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
-*/ 
+*/
 ```
 
-<a name='M-ADN-TimeSeries-DTW-GetSum'></a>
-### GetSum() `method`
+<a name='DTW.GetSum'></a>
 
-##### Summary
+
+### GetSum
 
 Get the value of the calculated DTW.
 
-##### Returns
+
+#### Returns
 
 Value of the calculated DTW.
 
-##### Parameters
 
-This method has no parameters.
-
-##### Example
+#### Example
 
 ```csharp
 var serie1= new double[] { 0, 1, 2, 3, 4, 5 };
@@ -149,168 +163,160 @@ var serie2 = new double[] { 5, 4, 3, 2, 1, 0 };
 int sakoeChibaBand = -1;
 var dtw = new DTW(serie1, serie2, sakoeChibaBand);
 var result = dtw.GetSum();
+
 /*
 result is 18
-*/ 
+*/
 ```
 
-<a name='T-ADN-TimeSeries-Euclidean'></a>
-## Euclidean `type`
+<a name='T:ADN.TimeSeries.Euclidean'></a>
 
-##### Namespace
 
-ADN.TimeSeries
-
-##### Summary
+## Euclidean
 
 A static class that implements Euclidean distance algorithm.
 
-<a name='M-ADN-TimeSeries-Euclidean-Distance-System-Double[],System-Double[]-'></a>
-### Distance(serie1,serie2) `method`
+<a name='Euclidean.Distance(serie1,serie2)'></a>
 
-##### Summary
+
+### Distance(serie1, serie2)
 
 Get the value of the calculated Euclidean distance.
 
-##### Returns
 
-Value of the calculated Euclidean distance.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| serie1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | The first [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array')that contains data to calculate the Euclidean distance. |
-| serie2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | The second [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array')that contains data to calculate the Euclidean distance. |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | serie1 is null |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | serie2 is null |
+| serie1 | *System.Double[]*<br>The first that contains data to calculate the Euclidean distance. |
 
-##### Example
+#### Parameters
+
+| serie2 | *System.Double[]*<br>The second that contains data to calculate the Euclidean distance. |
+
+
+#### Returns
+
+Value of the calculated Euclidean distance.
+
+*System.ArgumentNullException:* serie1 is null
+
+*System.ArgumentNullException:* serie2 is null
+
+
+#### Example
 
 ```csharp
 var serie1 =  new double[] { 0, 0, 0, 0, 0, 0 };
 var serie2 = new double[] { 1, 2, 3, 4, 5, 6 };
 var result = Euclidean.Distance(serie1, serie2);
+
 /*
 result is 9.53
-*/ 
+*/
 ```
 
-<a name='T-ADN-TimeSeries-RobustZScore'></a>
-## RobustZScore `type`
+<a name='T:ADN.TimeSeries.RobustZScore'></a>
 
-##### Namespace
 
-ADN.TimeSeries
-
-##### Summary
+## RobustZScore
 
 Class that implements thresholding algorithm with robust average filter.
 
-<a name='T-ADN-TimeSeries-SmoothedZScore'></a>
-## SmoothedZScore `type`
+<a name='T:ADN.TimeSeries.SmoothedZScore'></a>
 
-##### Namespace
 
-ADN.TimeSeries
-
-##### Summary
+## SmoothedZScore
 
 Class that implements thresholding algorithm with smoothed average filter.
 
-<a name='T-ADN-TimeSeries-ZScore'></a>
-## ZScore `type`
+<a name='T:ADN.TimeSeries.ZScore'></a>
 
-##### Namespace
 
-ADN.TimeSeries
-
-##### Summary
+## ZScore
 
 Abstract class that implements thresholding algorithm.
 
-<a name='M-ADN-TimeSeries-ZScore-Add-System-Double-'></a>
-### Add(value) `method`
+<a name='ZScore.Add(value)'></a>
 
-##### Summary
+
+### Add(value)
 
 Add a new point.
 
-##### Returns
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| value | *System.Double*<br>New point. |
+
+
+#### Returns
 
 Signal detected: 1 if positive signal, -1 if negative signal and 0 otherwise.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| value | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | New point. |
-
-##### Example
+#### Example
 
 ```csharp
 var smoothedZScore = new SmoothedZScore();
-double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 }; 
+double[] points = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -5 };
+
+for (int i = 0; i < points.Length; i++)
+{
+double detectedValue = smoothedZScore.Add(value[i]);
+
+if (detectedValue == 1) Console.WriteLine("Detected raise flank");
+else if (detectedValue == -1) Console.WriteLine("Detected falling flank");
+}
 ```
 
-<a name='M-ADN-TimeSeries-ZScore-SetInfluence-System-Double-'></a>
-### SetInfluence(influence) `method`
+<a name='ZScore.SetInfluence(influence)'></a>
 
-##### Summary
+
+### SetInfluence(influence)
 
 Set the influence.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| influence | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The influence (between 0 and 1) of new signals on the mean and standard deviation. |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | influence must to be between 0 and 1 |
+| influence | *System.Double*<br>The influence (between 0 and 1) of new signals on the mean and standard deviation. |
 
-<a name='M-ADN-TimeSeries-ZScore-SetLag-System-Int32-'></a>
-### SetLag(lag) `method`
+*System.ArgumentException:* influence must to be between 0 and 1
 
-##### Summary
+<a name='ZScore.SetLag(lag)'></a>
+
+
+### SetLag(lag)
 
 Set the lag.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| lag | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The lag of the moving window. |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | lag must be strictly positive |
+| lag | *System.Int32*<br>The lag of the moving window. |
 
-<a name='M-ADN-TimeSeries-ZScore-SetThreshold-System-Double-'></a>
-### SetThreshold(threshold) `method`
+*System.ArgumentException:* lag must be strictly positive
 
-##### Summary
+<a name='ZScore.SetThreshold(threshold)'></a>
+
+
+### SetThreshold(threshold)
 
 Set the threshold. The z-score at which the algorithm signals.
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Value to signal if a datapoint is out of standard deviations away from the moving mean. |
-
-##### Exceptions
+#### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | threshold must be positive |
+| threshold | *System.Double*<br>Value to signal if a datapoint is out of standard deviations away from the moving mean. |
+
+*System.ArgumentException:* threshold must be positive
+
