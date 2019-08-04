@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProjectGuid>{02A3B0A9-5A2A-49C3-B75D-57D7DB9021E2}</ProjectGuid>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <Title>ADN.TimeSeries</Title>
     <Authors>Andrés Di Giovanni</Authors>
     <Company>ADN</Company>	
     <Product>ADN.TimeSeries</Product>
     <Description>ADN.TimeSeries is a cross-platform open-source library which provides time series utilities to .NET developers</Description>
-    <Copyright>Copyright © Andrés Di Giovanni 2018</Copyright>
+    <Copyright>Copyright © Andrés Di Giovanni 2019</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/andresdigiovanni/ADN.TimeSeries/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/andresdigiovanni/ADN.TimeSeries</PackageProjectUrl>
-    <PackageTags>Series; Dynamic-Time-Wrapping; DTW-Barycenter-Averaging; DTW; DBA; Euclidean; SmoothedZScore</PackageTags>
+    <PackageTags>Series; Dynamic-Time-Wrapping; DTW-Barycenter-Averaging; DTW; DBA; Euclidean; RobustZScore; SmoothedZScore; ZScore</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl> 
     <RepositoryUrl>https://github.com/andresdigiovanni/ADN.TimeSeries</RepositoryUrl> 
     <PackageIconUrl>https://raw.githubusercontent.com/andresdigiovanni/ADN.TimeSeries/master/icon.png</PackageIconUrl>
