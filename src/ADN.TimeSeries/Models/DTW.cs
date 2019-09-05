@@ -123,7 +123,7 @@ namespace ADN.TimeSeries
         /// <returns>Path of the calculated DTW.</returns>
         /// <example>
         /// <code lang="csharp">
-        /// var serie1= new double[] { 0, 1, 2, 3, 4 };
+        /// var serie1 = new double[] { 0, 1, 2, 3, 4 };
         /// var serie2 = new double[] { 0, 1, 2, 3, 4 };
         /// int sakoeChibaBand = -1;
         /// var dtw = new DTW(serie1, serie2, sakoeChibaBand);

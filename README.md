@@ -9,6 +9,25 @@ ADN.TimeSeries is a cross-platform open-source library which provides time serie
 [![Quality](https://sonarcloud.io/api/project_badges/measure?project=andresdigiovanni_ADN.TimeSeries&metric=alert_status)](https://sonarcloud.io/dashboard?id=andresdigiovanni_ADN.TimeSeries)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Basic usage
+
+Dynamic time warping example:
+<br/>
+![DTW](resources/DTW.jpg)
+
+```csharp
+var serie1 = new double[] { 0, 1, 2, 3, 4 };
+var serie2 = new double[] { 0, 1, 2, 3, 4 };
+int sakoeChibaBand = -1;
+var dtw = new DTW(serie1, serie2, sakoeChibaBand);
+
+var result = dtw.GetPath();
+
+/*
+ result is [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+ */
+```
+
 ## Installation
 
 ADN.TimeSeries runs on Windows, Linux, and macOS.
